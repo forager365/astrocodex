@@ -1,0 +1,148 @@
+---
+import LessonCard from "../components/LessonCard.astro";
+
+const lessons = [
+  {
+    title: "Space Science",
+    description: "Explore planets, stars, and black holes through fun visual lessons.",
+    color: "#8a5cf6",
+    icon: "🪐",
+  },
+  {
+    title: "Math Adventures",
+    description: "Practice fractions, geometry, and puzzles with interactive challenges.",
+    color: "#2ec4b6",
+    icon: "➗",
+  },
+  {
+    title: "World History",
+    description: "Travel across time to learn about civilizations and key events.",
+    color: "#ff9f1c",
+    icon: "🏛️",
+  },
+  {
+    title: "Creative Writing",
+    description: "Build stories, poems, and comic scripts with guided prompts.",
+    color: "#ff4d8d",
+    icon: "✍️",
+  },
+];
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>BrightPath Lessons</title>
+    <meta
+      name="description"
+      content="A colorful lesson site for middle school students built with Astro."
+    />
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">Middle School Learning Hub</p>
+        <h1>BrightPath Lessons</h1>
+        <p class="subtitle">
+          Colorful, student-friendly lessons designed to make learning exciting every day.
+        </p>
+      </header>
+
+      <section aria-label="Featured lesson categories" class="lessons-grid">
+        {lessons.map((lesson) => <LessonCard {...lesson} />)}
+      </section>
+
+      <section class="cta">
+        <h2>Ready to launch today’s lesson?</h2>
+        <button type="button">Start Learning 🚀</button>
+      </section>
+    </main>
+  </body>
+</html>
+
+<style>
+  :root {
+    font-family: "Trebuchet MS", "Comic Sans MS", "Segoe UI", sans-serif;
+    color: #112244;
+    background:
+      radial-gradient(circle at top left, #bde0fe 0%, transparent 40%),
+      radial-gradient(circle at bottom right, #ffc8dd 0%, transparent 42%),
+      linear-gradient(140deg, #fef9ef 0%, #f0f7ff 40%, #f3faff 100%);
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  main {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 2.2rem 1rem 3rem;
+  }
+
+  header {
+    background: linear-gradient(110deg, #7b2cbf, #3a86ff, #00b4d8);
+    color: white;
+    border-radius: 1.2rem;
+    padding: 2rem;
+    box-shadow: 0 12px 30px rgba(41, 60, 99, 0.25);
+  }
+
+  .eyebrow {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: 700;
+    font-size: 0.82rem;
+  }
+
+  h1 {
+    margin: 0.4rem 0 0.8rem;
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  .subtitle {
+    margin: 0;
+    font-size: 1.1rem;
+    max-width: 60ch;
+  }
+
+  .lessons-grid {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+
+  .cta {
+    margin-top: 2rem;
+    text-align: center;
+    background: #fff;
+    border: 4px dashed #3a86ff;
+    border-radius: 1rem;
+    padding: 1.25rem;
+  }
+
+  .cta h2 {
+    margin: 0;
+    font-size: 1.35rem;
+  }
+
+  button {
+    margin-top: 1rem;
+    border: none;
+    border-radius: 999px;
+    background: linear-gradient(120deg, #ff006e, #fb5607);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.8rem 1.3rem;
+    cursor: pointer;
+  }
+
+  button:hover {
+    filter: brightness(1.05);
+  }
+</style>
