@@ -4,14 +4,24 @@ interface Props {
   description: string;
   color: string;
   icon: string;
+  lessons?: string[];
 }
 
-const { title, description, color, icon } = Astro.props;
+const { title, description, color, icon, lessons = [] } = Astro.props;
 ---
 
 <article class="lesson-card" style={`--card-color: ${color}`}>
   <h3><span class="icon" aria-hidden="true">{icon}</span>{title}</h3>
   <p>{description}</p>
+  {
+    lessons.length > 0 && (
+      <ul class="lesson-list" aria-label={`${title} lessons`}>
+        {lessons.map((lesson) => (
+          <li>{lesson}</li>
+        ))}
+      </ul>
+    )
+  }
 </article>
 
 <style>
@@ -44,5 +54,15 @@ const { title, description, color, icon } = Astro.props;
 
   .icon {
     font-size: 1.4rem;
+  }
+
+  .lesson-list {
+    margin: 0.8rem 0 0;
+    padding-left: 1.1rem;
+    font-size: 0.95rem;
+  }
+
+  .lesson-list li + li {
+    margin-top: 0.35rem;
   }
 </style>
