@@ -1,0 +1,68 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  color: string;
+  icon: string;
+  lessons?: string[];
+}
+
+const { title, description, color, icon, lessons = [] } = Astro.props;
+---
+
+<article class="lesson-card" style={`--card-color: ${color}`}>
+  <h3><span class="icon" aria-hidden="true">{icon}</span>{title}</h3>
+  <p>{description}</p>
+  {
+    lessons.length > 0 && (
+      <ul class="lesson-list" aria-label={`${title} lessons`}>
+        {lessons.map((lesson) => (
+          <li>{lesson}</li>
+        ))}
+      </ul>
+    )
+  }
+</article>
+
+<style>
+  .lesson-card {
+    background: linear-gradient(135deg, color-mix(in oklab, var(--card-color), white 15%), var(--card-color));
+    border-radius: 1rem;
+    color: #102038;
+    padding: 1rem;
+    box-shadow: 0 8px 20px color-mix(in oklab, var(--card-color), black 75%);
+    transition: transform 180ms ease;
+  }
+
+  .lesson-card:hover {
+    transform: translateY(-4px) rotate(-0.5deg);
+  }
+
+  h3 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0 0 0.5rem;
+    font-size: 1.2rem;
+  }
+
+  p {
+    margin: 0;
+    line-height: 1.4;
+    font-size: 1rem;
+  }
+
+  .icon {
+    font-size: 1.4rem;
+  }
+
+  .lesson-list {
+    margin: 0.8rem 0 0;
+    padding-left: 1.1rem;
+    font-size: 0.95rem;
+  }
+
+  .lesson-list li + li {
+    margin-top: 0.35rem;
+  }
+</style>
